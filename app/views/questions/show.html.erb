@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h3>Question</h3>
+<p>
+  <strong>Title:</strong>
+  <%= @question.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @question.description %>
+</p>
+
+<h2>Answers</h2>
+<% if !@answers.any? %>
+  <p><strong>
+    No Answers yet for this question
+  </strong></p>
+<%-else-%>
+  <% @answers.each do |answer| %>
+    <ul>
+      <li>Title: <%= @answer.title %></li>
+      <li>Description: <%= @answer.description %></li>
+    </ul>
+  <%-end-%>
+<%-end-%>
+
+<% if current_user %>
+  <%= render partial: 'answers/form', locals: {question: @question, answer: @answer } %>
+<%-end-%>
+
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>

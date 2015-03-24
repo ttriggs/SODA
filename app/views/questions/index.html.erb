@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>All Questions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= link_to question.title, question %></td>
+<!--          <td><%= question.description %></td>
+   <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+ -->      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%- if current_user -%>
+  <%= link_to 'New Question', new_question_path %>
+<%-end-%>
