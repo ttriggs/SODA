@@ -34,7 +34,7 @@ body {
 
 .top-bar-section li:not(.has-form) a:not(.button):hover {
   margin-right: 2px;
-  background-color: #532733; /* to override*/
+  background-color: #532733; /* override foundation*/
   box-shadow: 0px 1px 4px #515151;
 }
 
@@ -104,7 +104,6 @@ color: #D9D7D3 ;}
 }
 
 .panel {
-  background-color: #D5CCAA;
   box-shadow: 1px 0px 10px #515151;
   margin-left: -1em;
 }
