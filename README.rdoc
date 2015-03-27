@@ -1,28 +1,13 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Rails App Practice
 
-Things you may want to cover:
+This is a Stock Overflow-esque practice app using activerecord in ruby on rails
 
-* Ruby version
+# Features
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+- Visitors to the app can view questions and answers posted by users.
+- The most recently posted questions appear first on the questions index page.
+- A signed in user can post questions and answers to questions.
+- A question creator can "favorite" one answer they choose.
+- A question/answer creator can only delete/edit their content.

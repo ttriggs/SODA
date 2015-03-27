@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :destroy, :update, :create]
 
   def index
-    @questions = Question.order('created_at desc')
+    @questions = Question.order('created_at desc').limit(30)
   end
 
   def show
