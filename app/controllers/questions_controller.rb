@@ -32,10 +32,10 @@ class QuestionsController < ApplicationController
   def create
     @question = current_user.questions.new(question_params)
     if @question.save
-      flash[:notice] = "Save successful"
+      flash[:notice] = "Question saved successfully!"
       redirect_to @question
     else
-      flash[:notice] = "Save failed"
+      flash[:notice] = "Question failed to save!"
       render :new
     end
   end

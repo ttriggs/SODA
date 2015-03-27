@@ -4,7 +4,7 @@ class Answer < ActiveRecord::Base
   belongs_to :question
 
   validates :title, length: { minimum: 40 }
-  validates :body, length: { minimum: 150 }
+  validates :body, length: { minimum: 50 }
   validates :question, presence: true
 
   class << self
