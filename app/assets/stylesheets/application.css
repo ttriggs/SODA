@@ -13,3 +13,114 @@
  *= require_tree .
  *= require_self
  */
+
+.pager {
+  margin-left: 4em;
+  margin-right: 4em;
+}
+
+body {
+  background-color: #D5CCAA;
+}
+
+.top-bar {
+  background: #532733;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button) {
+  transition: all 0.2s ease;
+  background: #532733;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button):hover {
+  margin-right: 2px;
+  background-color: #532733; /* to override*/
+  box-shadow: 0px 1px 4px #515151;
+}
+
+a {
+  color: #532733;
+  text-decoration: none;
+  line-height: inherit; }
+  a:hover, a:focus {
+    color: #7B147F}
+  a img {
+    border: none; }
+
+.sowda {
+  transition: all 0.2s ease;
+  text-decoration: none;
+color: #D9D7D3 ;}
+
+.sowda a {
+  color: #D9D7D3;
+}
+
+.sowda:hover {
+  color: #D9D7D3;
+  margin-left: 2px;
+  background-color: #532733; /* to override*/
+  box-shadow: -2px 2px 5px #515151;
+}
+
+.top-bar-section ul li > a {
+  color: #D9D7D3;
+}
+
+.button {
+  background-color: #952C23;
+}
+
+.button:hover {
+  background-color: #B8352E;
+}
+
+.button a {
+  color: #D9D7D3;
+}
+
+.top-bar-section .login a {
+  font-size: 1em;
+}
+
+.center {
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+.my-h1 {
+  font-size: 2em;
+}
+
+.my-h3 {
+  font-size: 2em;
+  margin-bottom: 0em;
+}
+
+.my-favorite {
+  font-size: 1.4em;
+  margin-bottom: 0em;
+  font-style: italic;
+}
+
+.panel {
+  background-color: #D5CCAA;
+  box-shadow: 1px 0px 10px #515151;
+  margin-left: -1em;
+}
+
+.favorite-body {
+
+  padding-left: 0em;
+  margin: 0;
+}
+
+.top-bar-notice {
+  width: 100%;
+  padding-left: 1em;
+  background-color: #C8EFF7;
+}
+
+.word-break {
+  word-wrap: break-word;
+}

@@ -11,3 +11,6 @@
 /log/*
 !/log/.keep
 /tmp
+goals.txt
+rescue-mission.md
+.lesson.yml

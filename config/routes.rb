@@ -2,12 +2,14 @@ Rails.application.routes.draw do
 
   devise_for :users
   root 'questions#index'
-  resources :questions, only: [:index, :show, :create, :update, :destroy] do
-    resources :answers, only: [:index, :new, :create]
+  resources :questions, only: [:new, :edit, :index, :show, :create, :update, :destroy] do
+    resources :answers, only: [:create]
   end
-
-  resources :questions, only: [:new, :edit]
-  resources :answers, only: [:show, :new, :index]
+  resources :answers, only: [:destroy, :update]
+  post '/questions/:question_id/un-favorite_answer/:answer_id', to: "answers#un_favorite"
+  post '/questions/:question_id/favorite_answer/:answer_id', to: "answers#favorite"
+  # resources :questions, only: [:destroy]
+  # resources :answers, only: [:show, :index]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

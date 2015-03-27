@@ -1,33 +1,69 @@
-<p id="notice"><%= notice %></p>
+<div class="my-h1">Question</div>
 
-<h3>Question</h3>
-<p>
-  <strong>Title:</strong>
-  <%= @question.title %>
-</p>
+<div class="row large-12 columns">
+  <p>
+    <strong>Title:</strong>
+    <%= @question.title %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @question.description %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @question.description %>
+  </p>
 
-<h2>Answers</h2>
-<% if !@answers.any? %>
-  <p><strong>
-    No Answers yet for this question
-  </strong></p>
-<%-else-%>
-  <% @answers.each do |answer| %>
-    <ul>
-      <li>Title: <%= @answer.title %></li>
-      <li>Description: <%= @answer.description %></li>
-    </ul>
-  <%-end-%>
-<%-end-%>
+  <% question_creator = (@question.user == current_user) %>
+  <% if question_creator %>
+    <%= link_to 'Edit', edit_question_path(@question) %> |
+    <%= link_to 'Delete', '/questions/'+ @question.to_param, method: :delete %> |
+  <% end %>
+  <%= link_to 'Back', questions_path %>
+</div>
 
-<% if current_user %>
-  <%= render partial: 'answers/form', locals: {question: @question, answer: @answer } %>
-<%-end-%>
+<div class="my-h3">Answers</div>
+<div class="row large-12 columns">
 
-<%= link_to 'Edit', edit_question_path(@question) %> |
-<%= link_to 'Back', questions_path %>
+  <% featured_answer = @question.answers.featured.first %>
+    <%-if featured_answer.class == Answer -%>
+      <div class="favorite-answer panel">
+        <div class="my-favorite">* Favorite Answer *</div>
+        <div class="favorite-body">
+          <li>Title:  <%= featured_answer.title %></li>
+          <li>Body:  <%= featured_answer.body %></li>
+          <% answer_creator = (featured_answer.user == current_user) %>
+          <% if answer_creator %>
+            <%= link_to 'Delete', '/questions/'+ @question.to_param + '/answers/' + featured_answer.to_param, method: :delete %> |
+          <% end %>
+          <% if question_creator %>
+            <%= link_to 'Un-Favorite', '/questions/'+ @question.to_param + '/un-favorite_answer/' + featured_answer.to_param, method: :post %> |
+          <% end %>
+        </div>
+      </div>
+    <%-end-%>
+
+  <ul>
+    <% if @question.answers.none? %>
+      <p><strong> No Answers yet for this question </strong></p>
+    <%-else-%>
+      <% @question.answers.each do |answer| %>
+        <% if !answer.featured %>
+            <p>
+            <li>Title: <%= answer.title %></li>
+            <li><%= answer.body %></li>  <!-- #add choose as featured -->
+            <% answer_creator = (answer.user == current_user) %>
+            <% if answer_creator && answer.id.present? %>
+              |<%= link_to 'Delete', '/questions/'+ @question.to_param + '/answers/' + answer.to_param, method: :delete %>|
+            <% end %>
+            <% if question_creator  && answer.id.present? %>
+              <%= link_to 'Favorite', '/questions/'+ @question.to_param + '/favorite_answer/' + answer.to_param, method: :post %> |
+            <% end %>
+
+
+        <%-end-%>
+      <%-end-%>
+    <%-end-%>
+  </ul>
+
+  <% if current_user %>
+    <%= render 'answers/form' %>
+  <% end %>
+</div>

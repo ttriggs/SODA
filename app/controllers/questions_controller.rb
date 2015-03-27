@@ -1,13 +1,13 @@
 class QuestionsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :destroy, :update, :create]
 
   def index
     @questions = Question.order('created_at desc')
   end
 
   def show
-    set_question
-    @answers = @question.answers
-    @answer = Answer.new(question: @question)
+    @question = get_question
+    @answer = Answer.new
   end
 
   def new
@@ -15,14 +15,16 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    set_question
+    @question = get_question
   end
 
   def update
     @question = Question.update(params[:id], question_params)
     if @question.save
-      redirect_to question_path
+      flash[:notice] = "Save successful"
+      redirect_to @question
     else
+      flash[:notice] = "Update failed"
       render :new
     end
   end
@@ -31,6 +33,7 @@ class QuestionsController < ApplicationController
     @question = current_user.questions.new(question_params)
     if @question.save
       flash[:notice] = "Save successful"
+      redirect_to @question
     else
       flash[:notice] = "Save failed"
       render :new
@@ -38,16 +41,16 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
+    @question = Question.find(params[:id])
     @question.destroy
     redirect_to questions_path, notice: 'Question was successfully destroyed.'
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_question
-      @question = Question.find(params[:id])
+    def get_question
+      Question.find(params[:id])
     end
-
 
     def question_params
       params.require(:question).permit(:title, :description, :id)
