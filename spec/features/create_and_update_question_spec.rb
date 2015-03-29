@@ -22,7 +22,7 @@ feature 'creating and updating questions' do
   end
 
   context 'as a visitor' do
-    scenario 'I cannot create a question' do
+    scenario 'I cannot save a question' do
       visit new_question_path
 
       expect(page).to have_content("Log in")
