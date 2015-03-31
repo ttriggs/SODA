@@ -11,11 +11,12 @@ feature 'create an answer' do
 
     scenario 'create on the question show page' do
       question = FactoryGirl.create(:question)
+      answer = FactoryGirl.create(:answer)
       visit question_path(question)
 
       fill_in 'Title', with: answer.title
       fill_in 'Body', with: answer.body
-      click_on 'Create new Answer'
+      click_on 'Create Answer'
 
       expect(page).to have_content('Answer saved successfully.')
     end

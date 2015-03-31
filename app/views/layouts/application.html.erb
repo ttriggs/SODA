@@ -33,6 +33,11 @@
       <div id="notice"><%= notice %></div>
     </div>
   <%- end -%>
+  <% if flash.present? %>
+    <div class="top-bar-notice">
+      <div id="alert"><%= flash[:alert] %></div>
+    </div>
+  <%- end -%>
 
   <div class="pager">
     <div class="large-8 columns word-break">

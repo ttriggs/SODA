@@ -16,13 +16,15 @@ feature 'view quesitons' do
     end
 
     scenario 'I can view a questions details' do
-      question = FactoryGirl.create(:question, title: 'this is a question')
+      question = FactoryGirl.create(:question, title: '1111111111 2222222222')
 
       visit questions_path
-      click_on 'this is a question'
+      expect(page).to have_link(question.title)
+      click_on '1111111111 2222222222'
 
-      expect(page).to have_content(question.body)
       expect(page).to have_content(question.title)
+      expect(page).to have_content(question.description)
+
     end
   end
 end

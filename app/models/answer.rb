@@ -3,8 +3,8 @@ class Answer < ActiveRecord::Base
   belongs_to :user
   belongs_to :question
 
-  validates :title, length: { minimum: 40 }
-  validates :body, length: { minimum: 50 }
+  validates :title, length: { minimum: 20 }
+  validates :body, length: { minimum: 30 }
   validates :question, presence: true
 
   class << self
@@ -12,5 +12,4 @@ class Answer < ActiveRecord::Base
       where(featured: true)
     end
   end
-
 end
